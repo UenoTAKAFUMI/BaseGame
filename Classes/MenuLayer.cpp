@@ -64,14 +64,6 @@ bool MenuLayer::init(){
     this->addChild(color);
     
     
-    // メニュー画像の追加（スプライト生成）
-    auto sprite = Sprite::create("HelloWorld.png");
-    // 画面中央への配置
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-    // レイヤーへスプライト追加
-    this->addChild(sprite, 0);
-    
-    
     // タイトルへ戻るボタンの作成
     MenuItemImage* startButton = MenuItemImage::create(
                                                        "titlebutton.png",
@@ -83,8 +75,8 @@ bool MenuLayer::init(){
                                                            Director::getInstance()->replaceScene(TitleScene::createScene());
                                                        });
     
-    startButton->setPosition(Vec2(origin.x + startButton->getContentSize().width * 3 ,
-                                  origin.y + startButton->getContentSize().height * 5));
+    startButton->setPosition(Vec2(origin.x + ( visibleSize.width / 2 ) ,
+                                  origin.y + ( visibleSize.height / 5) * 3));
 
     
     // つづけるボタンの作成
@@ -108,8 +100,8 @@ bool MenuLayer::init(){
                                                        });
     
     // つづけるボタンのポジション
-    resumeButton->setPosition(Vec2(origin.x + resumeButton->getContentSize().width * 3 ,
-                                   origin.y + resumeButton->getContentSize().height * 3));
+    resumeButton->setPosition(Vec2(origin.x + ( visibleSize.width / 2 ) ,
+                                   origin.y + ( visibleSize.height / 5) * 4));
     
     
     
@@ -128,8 +120,6 @@ bool MenuLayer::init(){
 
 
 
-
-
 // ゲームオブジェクトの追加（ポーズ状態確認用）
 void MenuLayer::addGameObject(float delta){
     // 画像描画用に画面のサイズと座標開始位置を取得
@@ -139,6 +129,9 @@ void MenuLayer::addGameObject(float delta){
     
     // ゲームオブジェクト画像の追加（スプライト生成）
     auto gameObjectSprite = Sprite::create("tomato.png");
+    // ゲームオブジェクトのサイズ拡縮（比率を指定して縮小）
+    gameObjectSprite->setScale(0.1f);
+
     // 画面中央ちょい左へ配置
     gameObjectSprite->setPosition(Vec2(visibleSize.width/3 + origin.x, visibleSize.height/3 + origin.y));
     // レイヤーへスプライト追加

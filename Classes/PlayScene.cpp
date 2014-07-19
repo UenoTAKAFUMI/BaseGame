@@ -60,8 +60,8 @@ bool PlayScene::init(){
                                                       });
     
     
-    menuButton->setPosition(Vec2(origin.x + menuButton->getContentSize().width * 6 ,
-                                 origin.y + menuButton->getContentSize().height / 2));
+    menuButton->setPosition(Vec2(origin.x + ( visibleSize.width / 3) * 2 + ( menuButton->getContentSize().width / 2 ) ,
+                                      origin.y + visibleSize.height / 5));
     
     // メニュー作成
     Menu* menu = Menu::create(menuButton, NULL);
@@ -85,7 +85,8 @@ bool PlayScene::init(){
 
 // ゲームメイン処理
 void PlayScene::gameLogic(){
-    // 座標開始位置を取得
+    // 画像描画用に画面のサイズと座標開始位置を取得
+    Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
     // ゲームオブジェクトの追加とそのアニメーション処理
@@ -101,8 +102,8 @@ void PlayScene::gameLogic(){
                                                       });
     
     
-    clearButton->setPosition(Vec2(origin.x + clearButton->getContentSize().width * 8 ,
-                                 origin.y + clearButton->getContentSize().height * 2));
+    clearButton->setPosition(Vec2(origin.x + ( visibleSize.width / 3) * 2 + ( clearButton->getContentSize().width / 2 ) ,
+                                  origin.y + ( visibleSize.height / 5) * 2 ));
     
     // ゲームオーバーボタン作成
     MenuItemFont* gameOverButton = MenuItemFont::create("GAMEOVER!",
@@ -113,8 +114,8 @@ void PlayScene::gameLogic(){
                                                      });
     
     
-    gameOverButton->setPosition(Vec2(origin.x + gameOverButton->getContentSize().width * 5 ,
-                                  origin.y + gameOverButton->getContentSize().height * 4));
+    gameOverButton->setPosition(Vec2(origin.x + ( visibleSize.width / 3) * 2 + ( gameOverButton->getContentSize().width / 2 ) ,
+                                     origin.y + ( visibleSize.height / 5) * 3));
 
     
     
@@ -133,6 +134,8 @@ void PlayScene::addGameObject(float delta){
     
     // ゲームオブジェクト画像の追加（スプライト生成）
     auto gameObjectSprite = Sprite::create("tomato.png");
+    // ゲームオブジェクトのサイズ拡縮（比率を指定して縮小）
+    gameObjectSprite->setScale(0.1f);
     // 画面中央への配置
     gameObjectSprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
     // レイヤーへスプライト追加

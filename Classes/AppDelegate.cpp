@@ -19,6 +19,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
         glview = GLView::create("My Game");
         director->setOpenGLView(glview);
     }
+    
+    // マルチリゾレーション対応 デザイン解像度の設定
+    glview->setDesignResolutionSize(480, 320, ResolutionPolicy::SHOW_ALL);
 
     // turn on display FPS
     director->setDisplayStats(true);

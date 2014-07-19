@@ -56,8 +56,8 @@ bool TitleScene::init(){
                                                            Director::getInstance()->replaceScene(PlayScene::createScene());
                                                        });
     
-    startButton->setPosition(Vec2(origin.x + startButton->getContentSize().width * 3 ,
-                                  origin.y + startButton->getContentSize().height *5));
+    startButton->setPosition(Vec2(origin.x + visibleSize.width / 2 ,
+                                  origin.y + visibleSize.height / 5));
     
     // 作成したスタートボタンの設置
     Menu* menu = Menu::create(startButton, NULL);

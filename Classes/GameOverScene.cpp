@@ -56,8 +56,8 @@ bool GameOverScene::init(){
                                                      });
     
     
-    titleButton->setPosition(Vec2(origin.x + titleButton->getContentSize().width * 4 ,
-                                  origin.y + titleButton->getContentSize().height * 2));
+    titleButton->setPosition(Vec2(origin.x + ( visibleSize.width / 2 ) ,
+                                  origin.y + ( visibleSize.height / 5) * 2));
     
     
     
